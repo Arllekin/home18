@@ -81,7 +81,7 @@ class ProjectController
         $query = Project::query();
 
         $query->whereHas('user', function (Builder $qb) {
-            $qb->where('user_id', '=', Auth::id());
+            $qb->where('user.id', '=', Auth::id());
         });
 
         if($request->has('emails')){
