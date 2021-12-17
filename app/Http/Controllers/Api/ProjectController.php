@@ -81,10 +81,8 @@ class ProjectController
         $query = Project::query();
 
         $query->whereHas('user', function (Builder $qb) {
-            $qb->where('users.id', '=', Auth::id());
+            $qb->where('user_id', '=', Auth::id());
         });
-
-
 
         if($request->has('emails')){
             $emails = $request->get('emails');
@@ -93,10 +91,6 @@ class ProjectController
                 $qb->whereIn('email', $emails);
             });
         }
-
-        return $query->get();
-
-
 
         if($request->has('continents')){
             $continents = $request->get('continents');
